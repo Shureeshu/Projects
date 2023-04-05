@@ -1,0 +1,17 @@
+<!--accounts/login.html-->
+
+{% extends 'base.html' %}
+
+{% block title %}
+{% endblock title %}
+
+{% block content %}
+
+<h3>LOGIN</h3>
+<form action={% url 'accounts:login' %} method="POST">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <input type="submit">
+</form>
+{% comment %} <a href={% url 'todos:index' %}><span class="badge text-bg-primary">back</span></a> {% endcomment %}
+{% endblock content %}
