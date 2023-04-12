@@ -1,0 +1,37 @@
+<!--reviews/detail.html-->
+
+{% extends 'reviews/index.html' %}
+
+{% block content %}
+
+<div class="container">
+  <div class="card">
+    <div class="card-header">
+      <p class="card-title">{{ review.title }} about {{ review.movie }} </p>
+    </div>
+    <div class="card-body">
+      <p class="card-text">{{ review.content }}</p>
+    </div>
+    <hr>
+    <div class="card-body">
+      <form action="{% url 'reviews:comment' review.pk %}" method="POST">
+        {% csrf_token %}
+        {{ empty_form }}
+        <input type="submit" value="comment">
+      </form>
+    </div>
+    
+    {% for comment in comments %}
+    <div class="card-body">
+      <form action="{% url 'reviews:delete_comment' review.pk comment.pk %}" method="POST">
+        {% csrf_token %}
+        {{ comment.content }}
+        <input type="submit" value="delete"></input>
+      </form>
+    </div>
+    {% endfor %}
+    
+  </div> 
+</div>
+
+{% endblock content %}

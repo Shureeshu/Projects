@@ -1,0 +1,53 @@
+<!--reviews/index.html-->
+
+{% extends 'base.html' %}
+
+{% block title %}
+My Reviews
+{% endblock title %}
+
+
+{% block nav %}
+  {% load static %}
+  <nav class="navbar">
+    <div class="container d-flex flex-row">
+      <div class="d-flex flex-row" id="nav_brand_box">
+        <p class="fs-2 align-text-bottom">My Reviews</p>
+      </div>
+      <div class="d-flex flex-row" id="nav_btn_box">
+        <button><a href="{% url 'reviews:create' %}">글쓰기</a></button>
+      </div>
+    </div>
+  </nav>
+{% endblock nav %}
+
+{% block content %}
+<div class="container">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">title</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for review in reviews %}
+      
+        <tr>
+          <th scope="row">{{ review.pk }}</th>
+          <td><a href="{% url 'reviews:detail' review.pk %}">{{review.title}}</a></td>
+        </tr>
+      
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+{% endblock content %}
+
+
+{% block modal %}
+
+{% endblock modal %}
+
+

@@ -1,0 +1,13 @@
+<!--detail.html-->
+
+{% extends 'reviews/index.html' %}
+
+{% block content %}
+<div class="container">
+  <form action="{% url 'reviews:create' %}" method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit">
+</div>
+
+{% endblock content %}
