@@ -1,0 +1,31 @@
+<!--posts/index.html-->
+
+{% extends 'base.html' %}
+
+{% block content %}
+<content>
+  <div class="container">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">글 번호</th>
+          <th scope="col">카테고리</th>
+          <th scope="col">작성자</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for post in posts %}
+      <tr>
+        <th scope="row">{{ post.pk }}</th>
+        <td>{{ post.category }}</td>
+        <td>{{ post.title }}</td>
+        <td>[차후 추가 작성자</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+    </table>
+  </div>
+</content>
+
+{% endblock content %}
+

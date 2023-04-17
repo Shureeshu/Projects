@@ -1,0 +1,29 @@
+<!--*.html-->
+
+
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<hr>
+{% if request.user.is_authenticated %}
+<h3>Hello, {{ user }}</h3>
+  <a href="{% url 'accounts:logout' %}">logout</a>
+  <a href="{% url 'accounts:update' %}">update</a>
+  <a href="{% url 'accounts:delete' %}">delete</a>
+{% else %}
+<h3>Hello, </h3>
+  <a href="{% url 'accounts:signup' %}">signup</a>
+  <a href="{% url 'accounts:login' %}">login</a>
+{% endif %}
+
+<hr>
+
+<a href="{% url 'accounts:login' %}">login</a>
+<a href="{% url 'accounts:logout' %}">logout</a>
+<a href="{% url 'accounts:signup' %}">singup</a>
+<a href="{% url 'accounts:delete' %}">delete</a>
+<a href="{% url 'accounts:update' %}">update</a>
+
+{% endblock content %}

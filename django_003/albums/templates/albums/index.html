@@ -1,0 +1,72 @@
+<!--index.html-->
+
+{% extends 'base.html' %}
+
+{% block title %}
+My Album
+{% endblock title %}
+
+
+{% block nav %}
+  {% load static %}
+  <nav class="navbar navbar-expand-md">
+    <div class="container-fluid d-flex flex-row">
+      <div class="container d-flex flex-row" id="nav_logo_box">
+        <div class="image_wrapper" style="width:100px;">
+          <img src="{% static 'albums/logo.jpeg' %}" class="img-fluid" alt="album_logo">
+        </div>
+        <div class="container-fluid text_wrapper">
+          <p class="fs-2 align-text-bottom">My Album</p>
+      </div>
+      <div class="container" id="nav_btn_box">
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+          이미지 공유
+        </button>
+      </div>
+    </div>
+  </nav>
+{% endblock nav %}
+
+{% block content %}
+  {% load static %}
+
+  <div class="container">
+    
+    <div class="row g-2 row-cols-1 row-cols-sm-2 row-cols-md-4 align-items-start">
+
+
+      {% for album in albums %}
+      <div class="col">
+        <img src="{{ album.image.url }}" class="rounded img-fluid" alt="img">
+      </div>
+      {% endfor %}
+
+
+    </div>
+  </div>
+{% endblock content %}
+
+
+{% block modal %}
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">이미지 업로드 </h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>이미지를 업로드 하세요 </p>
+        <form action="{% url 'albums:index' %}" method="POST" enctype="multipart/form-data">
+          {% csrf_token %}
+          {{ form.as_p }}
+          <input type="submit">
+        </form>
+        
+
+    </div>
+  </div>
+</div> 
+{% endblock modal %}
+
+

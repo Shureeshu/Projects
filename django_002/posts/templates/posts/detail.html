@@ -1,0 +1,18 @@
+<!--posts/index.html-->
+
+{% extends 'base.html' %}
+
+{% block content %}
+
+<p>글 번호 - {{ post.pk }}</p>
+<p>글 제목 - {{ post.title }}</p>
+<p>글 내용 - {{ post.content }}</p>
+<p>글 카테고리 - {{ post.category }}</p>
+<a href="{% url 'posts:edit' post.pk %}">EDIT</a><br>
+<form action= "{% url 'posts:delete' post.pk %}" method="POST">
+    {% csrf_token %}
+    <input type="submit" value="DELETE">
+</form>
+<a href={% url 'posts:index' %}>BACK</a>
+
+{% endblock content %}

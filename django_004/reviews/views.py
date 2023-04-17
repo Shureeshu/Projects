@@ -54,7 +54,8 @@ def detail(request, review_pk, comment_pk=None):
             # delete comment
             comment = Comment.objects.get(pk = comment_pk)
             comment.delete()
-        return redirect('reviews:detail', review.pk) 
+        return redirect('reviews:detail', review.pk)
+    
     context = {
         'empty_form': empty_form,
         'review':review,

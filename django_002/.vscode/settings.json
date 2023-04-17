@@ -1,0 +1,7 @@
+{
+  "editor.formatOnSave": true,
+  "keyboard.touchbar.enabled": true,
+  "html.format.enable": true,
+  "html.format.indentHandlebars": true,
+  "html.format.templating": false
+}

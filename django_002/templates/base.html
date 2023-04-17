@@ -1,0 +1,53 @@
+<!--base.html-->
+
+{% extends 'base0.html' %}
+
+{% block title %}<title></title>{% endblock title %}
+
+{% block nav %}
+<nav class="navbar navbar-expand-md bg-body-tertiary">
+  <div class="container-fluid">
+    <a href="#" class="navbar-brand">Navbar</a>
+    <div class="d-flex">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <span class="navbar-text">{{ user }} 님, 안녕하세요.</span>
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          {% if request.user.is_authenticated %}
+            <li class="nav-item">
+              <a href="{% url 'accounts:update' %}" class="nav-btn btn btn-sm mx-2">account</a>
+            </li>
+            <li class="nav-item">
+              <a href="{% url 'accounts:logout' %}" class="nav-btn btn btn-sm mx-2">logout</a>
+            </li>
+          {% else %}
+            <li class="nav-item">
+              <a href="{% url 'accounts:login' %}" class="nav-btn btn btn-sm mx-2">login</a>
+            </li>
+            <li class="nav-item">
+              <a href="{% url 'accounts:signup' %}" class="nav-btn btn btn-sm mx-2">signup</a>
+            </li>
+          {% endif %}
+        </ul>
+    </div>
+  </div>
+</nav>
+{% endblock nav %}
+
+{% block sidebar %}
+
+<div class="container d-flex flex-column"> 
+  {% csrf_token %}
+  <a href="{% url 'posts:create' %}">NEW</a>
+  {% for category in categories %}
+  <form method="GET" actions="{% url 'posts:index' %}">
+    <input type="submit" value="{{  category  }}" name="category">
+  </form>
+  {% endfor %}
+</div>
+
+{% endblock sidebar %}
+
+{% block content %}{% endblock content %}
