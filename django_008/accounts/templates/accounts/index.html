@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>{{ user }}님 안녕하세요</h1>
+{% if user.is_authenticated %}
+<p><a href="{% url 'accounts:logout' %}">[로그아웃]</a></p>
+<p><a href="{% url 'accounts:update' %}">[회원 정보 수정]</a></p>
+<p><a href="{% url 'accounts:delete' %}">[회원 탈퇴]</a></p>
+{% else %}
+<p><a href="{% url 'accounts:login' %}">[로그인]</a></p>
+<p><a href="{% url 'accounts:signup' %}">[회원가입]</a></p>
+{% endif %}
+<p><h1>username:{{ user.username }}</h1></p>
+<p><h1>email:{{ user.email }}</h1></p>
+<p><h1>first_name:{{ user.first_name }}</h1></p>
+<p><h1>last_name:{{ user.last_name }}</h1></p>
+{% endblock content %}
+
