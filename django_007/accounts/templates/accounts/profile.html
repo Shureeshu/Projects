@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<hr>
+<h1>Users</h1>
+{% for user in users %}
+<p>username : {{ user.username }}</p>
+<p>팔로워 - {{ user.follwers.all|length }} / 팔로잉 - {{ user.followings.all|length }}</p>
+<form action="{% url 'follow' user.username %}" method="POST">
+  {% csrf_token %}
+  <input type="submit" value="팔로우">
+  <input type="submit" value="팔로우 취소">
+</form>
+<hr>
+{% endfor %}
+{% endblock content %}
