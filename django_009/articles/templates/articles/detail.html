@@ -3,7 +3,7 @@
   <div>
     <h3>DETAIL</h3>
     <p>게시글 작성자 -
-      {{article.user}}</p>
+      <a href="{% url 'accounts:profile' article.user %}">{{article.user}}</a></p>
     <p>
       게시글 번호 -
       {{article.pk}}
@@ -29,7 +29,7 @@
   {% for comment in comments %}
     <div>
       <p>댓글 작성자 -
-        {{comment.user}}</p>
+        <a href="{% url 'accounts:profile' comment.user %}">{{comment.user}}</p>
       <p>댓글 번호 -
         {{ comment.pk }}</p>
       <p>
