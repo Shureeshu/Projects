@@ -33,6 +33,9 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'accountbooks',
 
+    'django_extensions',
+    'debug_tools',
+    
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

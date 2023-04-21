@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>INDEX - 당신의 가계부</h1>
+<a href="#">new item</a>
+{% for lineitem in accountbooks %}
+<p><a href="#">{{ lineitem.date|date:"m/d" }} {{ lineitem.amount }} {{ lineitem.note }}</a></p>
+{% endfor %}
+{% endblock content %}
