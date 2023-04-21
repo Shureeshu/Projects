@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<p>{{ item.date }}</p>
+<p>{{ item.amount }} </p>
+<p>{{ item.note }}</p>
+<p>{{ item.descripton }}</p>
+<form action="#" method="GET">
+  <input type="submit" value="수정">
+</form>
+<form action="#" method="POST">
+  <input type="submit" value="삭제">
+</form>
+<form action="#" method="POST">
+  <input type="submit" value="복사">
+</form>
+{% endblock content %}
+
