@@ -58,3 +58,18 @@ def signup(request):
         'form': form,
     }
     return render(request, 'accounts/signup.html', context)
+
+
+"""
+POST accounts/<int:user_pk>/follow/
+비로그인 사용자는 팔로우 버튼이 비활성화(disabled) 상태입니다. -> template
+로그인 한 사용자는 다른 사용자 프로필 페이지에서 해당 사용자를 팔로우 할 수 있습니다.
+자기 자신을 팔로우 할 수 없습니다.
+"""
+@login_required
+def follow(request, user_pk):
+    person = get_user_model().objects.get(pk=user_pk)
+    if request.method == "POST":
+        if request.user.is_authenticated and person != request.user:
+            person.followers.add(request.user)
+    return redirect('accounts:profile', person)
