@@ -9,6 +9,8 @@
       {% csrf_token %}
       {% if person == user %}
         <input type="submit" value="Follow" disabled>
+      {% elif user in person.followers.all %}
+        <input type="submit" value="Unfollow">
       {% else %}
         <input type="submit" value="Follow">
       {% endif %}
