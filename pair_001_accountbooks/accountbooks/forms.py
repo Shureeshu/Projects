@@ -4,4 +4,4 @@ from .models import AccountBook
 class LineItemForm(ModelForm):
     class Meta:
         model = AccountBook
-        fields = ('date, note, amount)
+        fields = ('date', 'amount', )
