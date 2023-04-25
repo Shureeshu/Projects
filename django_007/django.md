@@ -19,8 +19,7 @@ https://www.toptal.com/developers/gitignore/
 $ django-admin startproject config .
 # 8. django 서버 실행
 $ python manage.py runserver
-
-# 9. 앱 생성 & 등록 (settings.py)
+# 9. 앱 생성 & 등록 (settings.py, )
 $ python manage.py startapp articles
 ```
 # URLs -> Views -> Templates

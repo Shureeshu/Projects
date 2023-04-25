@@ -25,7 +25,10 @@ def detail(request, article_pk):
         label = emotion['label']
         value = emotion['value']
         count = Emote.objects.filter(article=article, emotion=value).count()
-        exist = Emote.objects.filter(article=article, emotion=value, user=request.user)
+        try :
+            exist = Emote.objects.filter(article=article, emotion=value, user=request.user)
+        except:
+            exist = False
         emotions.append(
             {
                 'label': label,
@@ -94,7 +97,7 @@ def likes(request, article_pk):
         # article_pk에 해당하는 article을 조회
         article = Article.objects.get(pk=article_pk)
         # 해당 article의 like_users 필드에 사용자가 존재하면exists 삭제remove
-        if article.like_users.filter(pk=request.user.pk).exists():
+        if article.like_users.filter(pk=request.user.pk):
             article.like_users.remove(request.user)
         # 해당 article의 like_users 필드에 사용자가 존재하지 않으면 추가add
         else:
@@ -125,7 +128,7 @@ def comment_likes(request, article_pk, comment_pk):
         # comment_pk에 해당하는 comment을 조회
         comment = Comment.objects.get(pk=comment_pk)
         # 해당 comment의 like_users 필드에 사용자가 존재하면exists 삭제remove
-        if comment.like_users.filter(pk=request.user.pk).exists():
+        if comment.like_users.filter(pk=request.user.pk):
             comment.like_users.remove(request.user)
         # 해당 comment의 like_users 필드에 사용자가 존재하지 않으면 추가add        
         else:

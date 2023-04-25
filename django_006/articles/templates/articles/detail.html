@@ -18,17 +18,14 @@
     </p>
 
     {% if user.is_authenticated %}
-      {% if user in article.like_users.all %}
-        <form action="{% url 'articles:likes' article.pk %}" method="POST">
-          {% csrf_token %}
+      <form action="{% url 'articles:likes' article.pk %}" method="POST">
+        {% csrf_token %}
+        {% if user in article.like_users.all %}
         <input type="submit" value="좋아요 취소">
-        </form>
-      {% else %}
-        <form action="{% url 'articles:likes' article.pk %}" method="POST">
-          {% csrf_token %}
+        {% else %}
         <input type="submit" value="좋아요">
-        </form>
-      {% endif %}
+        {% endif %}
+      </form>
     {% endif %}
     <p>
       게시글 좋아요 수 -
@@ -37,22 +34,19 @@
     {% for emotion in emotions %}
     <div>
       {% if request.user.is_authenticated %}
-      {{emotion.queryset}}
-        <form action="{% url 'articles:emotes' article.pk emotion.value %}" method="POST">
-          {% csrf_token %}
-          {% if emotion.exist %}
-            <input type="submit" value="{{emotion.label}} 취소">
-          {% else %}
-            <input type="submit" value="{{emotion.label}}">
-          {% endif %}
-        </form>
-      {% else %}
-        <button disabled="disabled">{{emotion.label}}</button>
-      {% endif %}
-      <p>
-        게시글 {{emotion.label}} 수 -
-        {{ emotion.count }}
-      </p>
+          <form action="{% url 'articles:emotes' article.pk emotion.value %}" method="POST">
+            {% csrf_token %}
+            {% if emotion.exist %}
+              <input type="submit" value="{{emotion.label}} 취소">
+            {% else %}
+              <input type="submit" value="{{emotion.label}}">
+            {% endif %}
+          </form>
+        {% endif %}
+        <p>
+          게시글 {{emotion.label}} 수 -
+          {{ emotion.count }}
+        </p>
     </div>
     {% endfor %}
     <a href="{% url 'articles:index' %}">[back]</a>

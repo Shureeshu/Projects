@@ -1,0 +1,17 @@
+<form action="{% url 'accountbooks:create' %}" method="post">
+  {% csrf_token %}
+  <table>
+    <tr>
+      <select name="category" id="category">
+        {% for code, category in category_list %}
+        <option value="{{ code }}">{{ category }}</option>
+        {% endfor %}
+      </select>
+      <input type="date" name="date" id="date" value="{% now "Y-m-d" %}" placeholder="{% now "Y-m-d" %}">
+      <input type="number" name="amount" id="amount" placeholder="amount">
+      <input type="text" name="note" id="note" placeholder="note">
+      <input type="text" name="description" id="description" placeholder="description">
+      <input type="submit" value="save">
+    </tr>
+  </table>
+</form>

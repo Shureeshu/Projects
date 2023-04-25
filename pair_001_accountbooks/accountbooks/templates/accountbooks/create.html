@@ -1,18 +1,11 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
-<form action="{% url 'accountbooks:create' %}" method="post">
-  {% csrf_token %}
-  <input type="date" name="date" id="date">
-  <input type="number" name="amount" id="amount">
-  <input type="text" name="note" id="note">
-  <input type="text" name="description" id="description">
-  <select name="category" id="category">
-    {% for code, category in category_list %}
-    <option value="{{ code }}">{{ category }}</option>
-    {% endfor %}
-  </select>
-  <input type="submit" value="save">
-</form>
+
+{% for i in range(10) %}
+{% include 'create_form.html' %}
+{% endfor %}
+
 {% endblock content %}
 
